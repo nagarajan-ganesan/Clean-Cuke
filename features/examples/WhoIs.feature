@@ -1,8 +1,8 @@
-Feature:  WhoIsMyRepresantive.com provides REST apis that allow users to find out who their representative based on search values.
+Feature:  Testing of who is my representative API
 
 Scenario Outline: Get the list of representatives/senators by passing various parameters
 
-Given The service base url is "http://whoismyrepresentative.com"
+Given The service base url is from config file
 And the service end url is "<endurl>"
 
 When I make a "GET" request

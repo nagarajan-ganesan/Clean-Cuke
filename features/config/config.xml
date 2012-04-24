@@ -1,0 +1,13 @@
+<cucumberconfig>
+<emailsetup>
+<emailserver>appmail.federated.fds</emailserver>
+<emailport>25</emailport>
+<from>nagarajan.ganesan@macys.com</from>
+<to>nagarajan.ganesan@macys.com</to>
+</emailsetup>
+<features>
+<feature name="NagWS">
+<baseurl>http://whoismyrepresentative.com</baseurl>
+</feature>
+</features>
+</cucumberconfig>
