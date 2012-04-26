@@ -8,3 +8,6 @@ tmp/
 
 #Log Files
 WebServiceTesting.log
+
+#Project File
+.project
