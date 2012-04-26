@@ -1,1 +1,2 @@
-default: -r features/examples
+default: -r features/examples EMAIL_REPORT=OFF
+qa: -r features/examples EMAIL_REPORT=ON

@@ -47,19 +47,6 @@ Before do
 @baseurl = $baseURL
 end
 
-# Step hook - will be executed after each cucumber step to log the execution
-AfterStep do
- if (@logtext.length > 0)
-  $msgLog.logtext @logtext
- end
-end
-
-# Scenarion hook - will be executed after end of each scenario
-After do |scenario|
-  @htmlEMailCnt = @htmlEMailCnt + @scenarioresult
-  $htmlEMailContent = @htmlEMailCnt
-end
-
 Given /^The service base url is from config file$/ do
   @logtext = ""
 end

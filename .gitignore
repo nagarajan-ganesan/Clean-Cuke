@@ -5,3 +5,6 @@ output/
 
 # Temporary file directory
 tmp/
+
+#Log Files
+WebServiceTesting.log
