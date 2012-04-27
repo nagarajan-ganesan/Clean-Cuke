@@ -1,0 +1,2 @@
+default: -r features/support/ -r features/step_definitions/ features/examples EMAIL_REPORT=OFF
+qa: -r features/support/ -r features/step_definitions/ features/examples EMAIL_REPORT=ON

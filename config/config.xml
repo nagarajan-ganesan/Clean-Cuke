@@ -2,12 +2,15 @@
 <emailsetup>
 <emailserver>appmail.federated.fds</emailserver>
 <emailport>25</emailport>
-<from>nagarajan.ganesan@macys.com</from>
+<from>nagarajan.ganesan@aspiresys.com</from>
 <to>nagarajan.ganesan@macys.com</to>
 </emailsetup>
 <features>
-<feature name="NagWS">
+<feature name="WhoIs">
 <baseurl>http://whoismyrepresentative.com</baseurl>
+</feature>
+<feature name="delicious">
+<baseurl>https://api.del.icio.us</baseurl>
 </feature>
 </features>
 </cucumberconfig>

@@ -1,12 +1,3 @@
-require 'rubygems'
-require 'httparty'
-require 'json'
-require 'pp'
-require 'rexml/document'
-require 'hpricot'
-require 'uri'
-require 'logger'
-
 class Representative_XML
   include HTTParty
   format :xml  
@@ -22,29 +13,6 @@ class Representative_JSON
   def self.get_response(baseurl, paramname, paramvalue)
      get(baseurl)
   end
-end
-
-#Constructing Email body
-@htmlEMailCnt = $htmlEMailContent + "<br><b><font color = \"blue\">Feature Name: Testing whoismyrepresentative API" + "</font><br><br>"
-@htmlEMailCnt = @htmlEMailCnt + "<Table border=\"1\">"
-@htmlEMailCnt = @htmlEMailCnt + "<tr bgcolor=\"aqua\">"
-@htmlEMailCnt = @htmlEMailCnt + "<th>S.No</th>"
-@htmlEMailCnt = @htmlEMailCnt + "<th>Snenarion Name</th>"
-@htmlEMailCnt = @htmlEMailCnt + "<th>Request URL</th>"
-@htmlEMailCnt = @htmlEMailCnt + "<th>Method</th>"
-@htmlEMailCnt = @htmlEMailCnt + "<th>Response</th>"
-@htmlEMailCnt = @htmlEMailCnt + "<th>Tags verified</th>"
-@htmlEMailCnt = @htmlEMailCnt + "<th>Tags missing</th>"
-@htmlEMailCnt = @htmlEMailCnt + "<th>Format</th>"
-@htmlEMailCnt = @htmlEMailCnt + "<th>Result</th></tr>"
-$htmlEMailContent = @htmlEMailCnt
-
-
-# Reading base URL for this feature
-$baseURL = $config_xml.cucumberconfig.features.feature(:css => "[name='NagWS']").baseurl.content
-Before do
-@htmlEMailCnt = $htmlEMailContent
-@baseurl = $baseURL
 end
 
 Given /^The service base url is from config file$/ do
@@ -67,7 +35,8 @@ And /^send the service parameter "([^"]*)"$/ do |paramname|
 end
 
 And /^the parameter value is "([^"]*)"$/ do |value|
-@baseurl= @baseurl + "/" + @endurl + "?" + @paramname  + "=" + value
+@baseurl= "#{@baseurl}/#{@endurl}?#{@paramname}=#{value}"
+
 @logtext = "Request url : " + @baseurl
 puts "\nRequest URL: " + @baseurl
 puts "\n"
@@ -76,9 +45,10 @@ end
 
 And /^request for "([^"]*)"$/ do |format|
 @format = format
+puts "FORMAT: " + @format
 request = @baseurl
   uri = URI.parse(URI.encode(request.strip))
-  if format == 'xml'
+  if (@format == 'xml')
     @response = Representative_XML.get_response("#{uri}", @paramname, @value)    
   else
     @response = Representative_JSON.get_response("#{uri}", @paramname, @value)
@@ -114,11 +84,11 @@ And /^I should see the tags "([^"]*)" in the response$/ do |tags|
      if (tagindex != nil)
        puts "Found the tag: " + tag
        @logtext = @logtext + "Found the tag: " + tag + ","
-       @tagsverified = @tagsverified + tag + ","
+       @tagsverified = @tagsverified + tag + ", "
      else
        puts "Tag not found: " + tag
        @logtext = @logtext + "Did not found the tag: " + tag + ","
-       @tagsmissing = @tagsmissing + tag + ","
+       @tagsmissing = @tagsmissing + tag + ", "
        @result = "Fail"
      end
      puts "\n"
@@ -126,22 +96,13 @@ And /^I should see the tags "([^"]*)" in the response$/ do |tags|
 end
 
 And /^the response should be in "([^"]*)"$/ do |format|
-
-if (format == 'xml' && @response.headers['content-type'].index(format) > 0)
-  puts "Response format is as expected : " + format + "\n"
-  @logtext = "Response format is as expected : " + format
-end
-
-if (format == 'json' && @response.headers['content-type'].index("xml") == nil)
-  puts "Response format is as expected : " + format + "\n"
-  @logtext = "Response format is as expected : " + format
-end
-$sno = $sno + 1
-@scenarioresult = ""
-if (@result == "Pass")
-   respart = "<td><font color=\"green\">PASS</font></td>"
-else
-   respart = "<td><font color=\"red\">FAIL</font></td>"
-end
-@scenarioresult = "<tr><td>" + $sno.to_s() + "</td><td>Testing of " + @endurl + "</td><td>" + @baseurl + "</td><td>" + @method + "</td><td>" + @response.code.to_s() + "-" + @response.message + "</td><td>" + @tagsverified + "</td><td>" + @tagsmissing + "</td><td>" + @format + "</td>" + respart + "</tr>"
+  if (format == 'xml' && @response.headers['content-type'].index(format) > 0)
+    puts "Response format is as expected : " + format + "\n"
+    @logtext = "Response format is as expected : " + format
+  end
+  
+  if (format == 'json' && @response.headers['content-type'].index("xml") == nil)
+    puts "Response format is as expected : " + format + "\n"
+    @logtext = "Response format is as expected : " + format
+  end
 end

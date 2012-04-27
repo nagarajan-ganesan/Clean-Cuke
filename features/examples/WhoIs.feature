@@ -1,5 +1,6 @@
 Feature:  Testing of who is my representative API
 
+@AllWhoIsScenarios
 Scenario Outline: Get the list of representatives/senators by passing various parameters
 
 Given The service base url is from config file
