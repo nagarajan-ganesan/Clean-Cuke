@@ -10,6 +10,23 @@ Before ('@AllDeliciousScenarios') do
   $baseURL = $config_xml.cucumberconfig.features.feature(:css => "[name='delicious']").baseurl.content
 end
 
+# Tagged Scenario Hook - Will run before scenario
+Before ('@usercreateservice') do
+
+  # Reading the base URL from config file
+  $baseURL = $config_xml.cucumberconfig.features.feature(:css => "[name='usercreate']").baseurl.content
+  
+  # Read headers
+  @headerNames = ""
+  @headerValues = ""
+  $config_xml.cucumberconfig.features.feature(:css => "[name='usercreate']").headers.header.each do |head|
+    tagarray = head.text.split(",")
+    @headerNames = @headerNames + tagarray[0] + ";"
+    @headerValues = @headerValues + tagarray[1] + ";"
+  end
+end
+
+
 # Before scenario hook - will get executed before every scenario
 Before do
 if ($oldbaseurl != $baseURL)  

@@ -10,6 +10,7 @@ When I make a "GET" request
 And I make the call with "<casename>"
 And the username is "<username>"
 And the password is "<password>"
+And executing the delicious service
 
 Then the response code should be "<respcode>"
 And I should see the tags "<tagstoverify>" in the response

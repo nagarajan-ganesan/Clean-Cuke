@@ -2,7 +2,7 @@
 <emailsetup>
 <emailserver>appmail.federated.fds</emailserver>
 <emailport>25</emailport>
-<from>nagarajan.ganesan@aspiresys.com</from>
+<from>nagarajan.ganesan@macys.com</from>
 <to>nagarajan.ganesan@macys.com</to>
 </emailsetup>
 <features>
@@ -11,6 +11,14 @@
 </feature>
 <feature name="delicious">
 <baseurl>https://api.del.icio.us</baseurl>
+</feature>
+<feature name="usercreate">
+<baseurl>http://services2.macys.com</baseurl>
+<headers>
+	<header>x-macys-webservice-client-id,psp_1.0_5825a8b937</header>
+	<header>Content-Type,application/x-www-form-urlencoded</header>
+	<header>Accept,application/xml</header>	
+</headers>
 </feature>
 </features>
 </cucumberconfig>
