@@ -7,6 +7,7 @@ require 'pony'
 require 'nokogiri'
 require 'httparty'
 require 'json'
+require 'json-schema'
 require 'pp'
 require 'rexml/document'
 require 'uri'
@@ -30,10 +31,12 @@ class EmailSetupReader
   attr_reader :email_port
   attr_reader :email_from
   attr_reader :email_to
+  attr_reader :email_password
   def initialize
     @email_server = $config_xml.cucumberconfig.emailsetup.emailserver.text
     @email_port = $config_xml.cucumberconfig.emailsetup.emailport.text
     @email_from = $config_xml.cucumberconfig.emailsetup.from.text
     @email_to = $config_xml.cucumberconfig.emailsetup.to.text
+    @email_password = $config_xml.cucumberconfig.emailsetup.password.text
   end
 end

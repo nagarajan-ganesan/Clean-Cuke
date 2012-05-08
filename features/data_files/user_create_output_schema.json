@@ -1,0 +1,44 @@
+{
+"name": "userCreate",
+"type": "object",
+"properties": 
+[
+{
+"firstName":
+{
+"required": true,
+"type": "string"
+}},
+{
+"success":
+{
+"type": "boolean",
+"description": "A flag to indicate whether the operation was successful or not"
+}},
+{
+"error":
+{
+"type": "string",
+"required": false,
+"description": "Error message if the user was not created successfully"
+}},
+{
+"userId":
+{
+"required": true,
+"type": "integer",
+"minimum": 1,
+"maximum": 999999999999,
+"description": "An unique id for each user profile"
+}},
+{
+"bazaar_voice_id":
+{
+"required": true,
+"type": "string",
+"minLength": 1,
+"maxLength": 100,
+"description": "The id used to access the BazaarVoice system to access product reviews"
+}}
+]
+}

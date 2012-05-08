@@ -57,7 +57,7 @@ request = @baseurl
 end
 
 Then /^the response code should be "([^"]*)"$/ do |rescode|
-@result = "Pass"
+@result = "Pass"  
 if (rescode == @response.code.to_s()) 
   puts "Response code is as expected" + "\n"
 else

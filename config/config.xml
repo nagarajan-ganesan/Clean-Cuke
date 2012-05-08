@@ -1,9 +1,10 @@
 <cucumberconfig>
 <emailsetup>
-<emailserver>appmail.federated.fds</emailserver>
+<emailserver>pod51012.outlook.com</emailserver>
 <emailport>25</emailport>
-<from>nagarajan.ganesan@macys.com</from>
-<to>nagarajan.ganesan@macys.com</to>
+<from>nagarajan.ganesan@aspiresys.com</from>
+<to>nagarajan.ganesan@aspiresys.com</to>
+<password>dilip@123</password>
 </emailsetup>
 <features>
 <feature name="WhoIs">
@@ -17,7 +18,7 @@
 <headers>
 	<header>x-macys-webservice-client-id,psp_1.0_5825a8b937</header>
 	<header>Content-Type,application/x-www-form-urlencoded</header>
-	<header>Accept,application/xml</header>	
+	<header>Accept,application/json</header>	
 </headers>
 </feature>
 </features>

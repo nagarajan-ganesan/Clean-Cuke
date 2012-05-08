@@ -26,7 +26,6 @@ Before ('@usercreateservice') do
   end
 end
 
-
 # Before scenario hook - will get executed before every scenario
 Before do
 if ($oldbaseurl != $baseURL)  
@@ -99,7 +98,7 @@ at_exit do
     EmailConfig = EmailSetupReader.new
     puts "The script execution is logged in WebServiceTesting.log"
     emailer = Emailsender.new    
-    emailer.sendemail($htmlEMailContent, EmailConfig.email_server, EmailConfig.email_port, EmailConfig.email_from, EmailConfig.email_to)
+    emailer.sendemail($htmlEMailContent, EmailConfig.email_server, EmailConfig.email_port, EmailConfig.email_from, EmailConfig.email_to, EmailConfig.email_password)
     puts "Notification email sent!"
   end
 end
